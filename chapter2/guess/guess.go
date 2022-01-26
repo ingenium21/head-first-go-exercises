@@ -1,3 +1,4 @@
+//guess challenges players to guess a random number
 package main
 
 import (
@@ -17,10 +18,9 @@ func main() {
 	target := rand.Intn(100) + 1
 	fmt.Println("Ive chosen a random number between 1 and 100.")
 	fmt.Println("Can you guess it?")
-	fmt.Println(target)
 
 	reader := bufio.NewReader(os.Stdin)
-
+	correct := false
 	for guesses := 0; guesses < 10; guesses++ {
 		fmt.Printf("you have %d guesses left: ", 10-guesses)
 		input, err := reader.ReadString('\n')
@@ -39,12 +39,12 @@ func main() {
 			fmt.Println("Oops.  Your guess was HIGH")
 		} else {
 			fmt.Println("You guessed right!")
+			correct = true
 			break
 		}
-		if guesses == 9 {
-			fmt.Println("Sorry, you ran out of guesses :(")
-			fmt.Println("the correct answer was: ", target)
-		}
 	}
-
+	if !correct {
+		fmt.Println("Sorry, you ran out of guesses :(")
+		fmt.Println("the correct answer was: ", target)
+	}
 }
