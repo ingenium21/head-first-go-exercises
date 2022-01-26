@@ -22,7 +22,7 @@ func main() {
 	reader := bufio.NewReader(os.Stdin)
 
 	for guesses := 0; guesses < 10; guesses++ {
-		fmt.Print("Make a guess: ")
+		fmt.Printf("you have %d guesses left: ", 10-guesses)
 		input, err := reader.ReadString('\n')
 		if err != nil {
 			log.Fatal(err)
