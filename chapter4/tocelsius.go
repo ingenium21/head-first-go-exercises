@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"keyboard"
+	"head-first-go-exercises/keyboard"
 	"log"
 )
 
