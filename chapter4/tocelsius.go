@@ -11,9 +11,9 @@ func toCelsius(temp float64) {
 	fmt.Printf("%0.2f degrees Celsius\n", celsius)
 }
 
-func toFarenheight(temp float64) {
+func toFarenheit(temp float64) {
 	farenheit := (temp * 9 / 5) + 32
-	fmt.Printf("%0.2f degrees Celsius\n", farenheit)
+	fmt.Printf("%0.2f degrees Farenheit\n", farenheit)
 }
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 	if choice == 2 {
 		toCelsius(temp)
 	} else if choice == 1 {
-		toFarenheight(temp)
+		toFarenheit(temp)
 	} else {
 		fmt.Println("please enter a valid choice")
 	}
