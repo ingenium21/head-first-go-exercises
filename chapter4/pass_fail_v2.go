@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"keyboard"
+	"head-first-go-exercises/keyboard"
 	"log"
 )
 
+// @ts-ignore:6192
 func main() {
 	var status = ""
 	fmt.Print("Enter a grade: ")
