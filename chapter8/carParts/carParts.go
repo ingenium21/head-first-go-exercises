@@ -13,6 +13,19 @@ type car struct {
 	topSpeed int
 }
 
+func showInfo(p part) {
+	fmt.Printf("Description: %s\n", p.description)
+	fmt.Printf("Count: %d\n", p.count)
+	fmt.Printf("Price: %.2f\n", p.price)
+}
+
+func minimimumOrder(description string, price float64) part {
+	var p part
+	p.description = description
+	p.count = 100
+	p.price = price
+	return p
+}
 func main() {
 	//two ways to declare a type struct
 	var porsche = car{
@@ -26,8 +39,9 @@ func main() {
 	bolts.description = "Hex Bolts"
 	bolts.count = 24
 	bolts.price = 3.99
-	fmt.Printf("Description: %s\n", bolts.description)
-	fmt.Printf("Count: %d\n", bolts.count)
-	fmt.Printf("Price: %.2f\n", bolts.price)
 
+	bolts1 := minimimumOrder(bolts.description, bolts.price)
+
+	showInfo(bolts)
+	showInfo(bolts1)
 }

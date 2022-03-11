@@ -8,24 +8,28 @@ type subscriber struct {
 	active bool
 }
 
+func printInfo(s subscriber) {
+	fmt.Printf("Name: %s\n", s.name)
+	fmt.Printf("Rate: %.2f\n", s.rate)
+	fmt.Printf("Active: %t\n", s.active)
+}
+
+func defaultSubscriber(name string) subscriber {
+	var s subscriber
+	s.name = name
+	s.rate = 5.99
+	s.active = true
+	return s
+}
+
 //print the subscriber
 func main() {
 
-	var sub1 subscriber
-	sub1.name = "John Smith"
+	//create two subscribers
+	sub1 := defaultSubscriber("John Smith")
 	sub1.rate = 4.99
-	sub1.active = true
+	printInfo(sub1)
 
-	var sub2 = subscriber{
-		name:   "Jane Doe",
-		rate:   5.99,
-		active: false,
-	}
-
-	fmt.Printf("Name: %s\n", sub1.name)
-	fmt.Printf("Rate: %.2f\n", sub1.rate)
-	fmt.Printf("Active: %t\n", sub1.active)
-	fmt.Printf("Name: %s\n", sub2.name)
-	fmt.Printf("Rate: %.2f\n", sub2.rate)
-	fmt.Printf("Active: %t\n", sub2.active)
+	sub2 := defaultSubscriber("Jane Doe")
+	printInfo(sub2)
 }
