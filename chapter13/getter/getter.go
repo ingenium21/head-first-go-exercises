@@ -5,11 +5,14 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"time"
 )
 
-func responseSize(url string) {
-	fmt.Println("Getting", url)
+type Page struct {
+	URL  string
+	Size int
+}
+
+func responseSize(url string, channel chan Page) {
 	response, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
@@ -19,12 +22,19 @@ func responseSize(url string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(len(body))
+	channel <- Page{URL: url, Size: len(body)}
 
 }
 func main() {
-	go responseSize("https://www.google.com")
-	go responseSize("https://www.yahoo.com")
-	go responseSize("https://www.bing.com")
-	time.Sleep(2 * time.Second)
+	pages := make(chan Page)
+	urls := []string{"https://www.google.com", "https://www.yahoo.com", "https://www.bing.com"}
+
+	for _, url := range urls {
+		go responseSize(url, pages)
+	}
+
+	for i := 0; i < len(urls); i++ {
+		page := <-pages
+		fmt.Printf("%s: %d\n", page.URL, page.Size)
+	}
 }
